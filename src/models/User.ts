@@ -1,6 +1,6 @@
-import {IsOptional,IsEmail, IsNotEmpty,IsDate,MinLength,IsArray,IsMobilePhone,ArrayNotEmpty,IsJWT,IsMongoId} from "class-validator";
+import {IsOptional,IsEmail, IsNotEmpty,IsDate,MinLength,MaxLength,IsArray,IsMobilePhone,ArrayNotEmpty,IsJWT,IsMongoId} from "class-validator";
 
-export class User {
+export class UserDTO {
     @IsOptional()
     @IsMongoId()
     _id:string;
@@ -19,14 +19,16 @@ export class User {
     full_name:string;
 
     @IsMobilePhone('es-ES')
+    @IsOptional()
     mobile_phone:string
 
     @IsNotEmpty()
     @MinLength(4)
-    @MinLength(32)
+    @MaxLength(32)
     password:string;
 
     @IsDate()
+    @IsOptional()
     createdOn:Date
 
     @IsOptional()
@@ -34,7 +36,7 @@ export class User {
     token:string;
 
     constructor(values: object = {}) {
-        Object.assign(this as User, values);
+        Object.assign(this as UserDTO, values);
     }
 
 }
