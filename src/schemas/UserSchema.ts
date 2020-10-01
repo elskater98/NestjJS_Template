@@ -20,6 +20,9 @@ export class User extends Document{
     @Prop({type:String})
     mobile_phone:string
 
+    @Prop({type:String})
+    full_name:string;
+
     @Prop({type:Date,default:Date.now()})
     createdOn:Date
 }
