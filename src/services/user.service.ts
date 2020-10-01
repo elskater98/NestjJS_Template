@@ -12,4 +12,8 @@ export class UserService {
         const createdUser = new this.userModel(userDTO);
         return createdUser.save();
     }
+
+    async exists(id):Promise<boolean>{
+        return this.userModel.exists({username: id});
+    }
 }

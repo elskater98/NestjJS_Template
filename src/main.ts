@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {ValidationPipe} from '@nestjs/common';
 import{ConfigService} from '@nestjs/config'
+import {AppService} from "./app.service";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,7 +14,8 @@ async function bootstrap() {
   const config = app.get(ConfigService);
 
   /* Init Database*/
-
+  const appService = app.get(AppService);
+  await appService.init();
 
 
   await app.listen(config.get('port'));

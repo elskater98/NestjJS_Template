@@ -23,9 +23,9 @@ import config from "../config";
         useFindAndModify: false,
         useCreateIndex: true
       })
-    }),],
+    })],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {
 
