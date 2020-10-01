@@ -13,5 +13,9 @@ async function bootstrap() {
   await utilServices.initializationDataBase();
 
   await app.listen(3000);
+
+  // TODO: User schema, user service,module,controller, add user service to utilServices to init DB
+  // TODO .env config
+  // TODO JWT (Guard, Decorators)
 }
 bootstrap();
