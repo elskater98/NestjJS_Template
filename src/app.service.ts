@@ -1,18 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import {UserService} from "./services/user.service";
 import {UserDTO} from "./models/UserDTO";
+import{ConfigService} from '@nestjs/config'
 
 @Injectable()
 export class AppService {
-    constructor(private readonly userService: UserService) {
+    private readonly logger = new Logger(AppService.name);
+    constructor(private readonly userService: UserService,
+                private readonly configService:ConfigService) {
     }
 
     async init(){
         if(!await this.userService.exists("admin")){
-            const dto = new UserDTO({username:"admin",email:"admin@admin.com",roles:['admin'],full_name:'Admin Admin',mobile_phone:"666999333",password:"password"})
+            const user = this.configService.get<object>('default_user');
+            const dto = new UserDTO(user);
             await this.userService.create(dto);
+            this.logger.log("Initialize Administration User");
         }
-        console.log("Init Database");
-
     }
 }

@@ -13,7 +13,15 @@ export class UserService {
         return createdUser.save();
     }
 
-    async exists(id):Promise<boolean>{
+    async getAll():Promise<User[]>{
+        return this.userModel.find({});
+    }
+
+    async get(id:string):Promise<User>{
+        return this.userModel.findOne({username:id})
+    }
+
+    async exists(id:string):Promise<boolean>{
         return this.userModel.exists({username: id});
     }
 }
