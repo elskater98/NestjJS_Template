@@ -8,5 +8,6 @@ export default () => ({
         full_name:"Administration NestJS",
         mobile_phone:"666999333",
         password:"password"
-    }
+    },
+    jwt_key:process.env.JWT_KEY || '2dmrfE2vga'
 });

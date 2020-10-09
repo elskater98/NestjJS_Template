@@ -12,7 +12,7 @@ export class AppService {
 
     async init(){
         if(!await this.userService.exists("admin")){
-            const user = this.configService.get<object>('default_user');
+            let user = this.configService.get<object>('default_user');
             const dto = new UserDTO(user);
             await this.userService.create(dto);
             this.logger.log("Initialize Administration User");
