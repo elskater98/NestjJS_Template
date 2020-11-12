@@ -27,4 +27,14 @@ export class UserService {
     async exists(id:string):Promise<boolean>{
         return this.userModel.exists({username: id});
     }
+
+    async edit(id:string,changes:any){
+        await this.userModel.updateOne({'_id':id},{
+            $set:changes
+        });
+    }
+
+    async remove(id:string){
+        await this.userModel.deleteOne({_id:id});
+    }
 }

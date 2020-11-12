@@ -22,6 +22,5 @@ async function bootstrap() {
   await app.listen(config.get<number>('port'));
 
 
-  // TODO JWT (Guard, Decorators)
 }
 bootstrap();
